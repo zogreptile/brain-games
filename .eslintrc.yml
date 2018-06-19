@@ -10,4 +10,4 @@ env:
   node: true
   
 plugins: 
-- eslint-plugin-import
+  - eslint-plugin-import
