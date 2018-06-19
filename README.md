@@ -1,7 +1,7 @@
 # Brain Games
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/maintainability)](https://codeclimate.com/github/codeclimate/codeclimate/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/test_coverage)](https://codeclimate.com/github/codeclimate/codeclimate/test_coverage)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/test_coverage)](https://codeclimate.com/github/zogreptile/project-lvl1-s292/test_coverage)
 [![Build Status](https://travis-ci.org/zogreptile/project-lvl1-s292.svg?branch=master)](https://travis-ci.org/zogreptile/project-lvl1-s292)
 
 Первый проект Brain Games курса [Фронтенд JS-программист](https://ru.hexlet.io/professions/frontend) от Хекслета.
