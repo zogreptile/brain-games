@@ -1,5 +1,5 @@
 import readlineSync from 'readline-sync';
-import { isEven } from './utils';
+import isEven from './utils';
 
 export const askName = () => {
   const username = readlineSync.question('May I have your name? ');
@@ -8,19 +8,9 @@ export const askName = () => {
   return username;
 };
 
-const getCorrectAnswer = (number) => { return isEven(number) ? 'yes' : 'no'; };
+const getCorrectAnswer = number => (isEven(number) ? 'yes' : 'no');
 
-export const isCorrectAnswer = (number, answer) => {
-  const correctAnswer = getCorrectAnswer(number);
-
-  if (answer !== correctAnswer) {
-    return false;
-  }
-
-  return true;
-};
-
-export const askQuestion = (attempt, username) => {
+const askQuestion = (attempt, username) => {
   if (attempt === 3) {
     console.log(`Congratulations, ${username}!`);
     return true;
@@ -28,17 +18,22 @@ export const askQuestion = (attempt, username) => {
 
   const number = Math.ceil(Math.random() * 20);
   const answer = readlineSync.question(`Question: ${number}`, { hideEchoBack: true, mask: '' });
+  const correctAnswer = getCorrectAnswer(number);
 
   console.log(`Your answer: ${answer}`);
 
-  if (isCorrectAnswer(number, answer)) {
-    console.log('Correct!');
+  if (answer === correctAnswer) {
+    console.log('Correct!\n');
     return askQuestion(attempt + 1, username);
   }
 
-  console.log(`${answer} is wrong answer ;(. Correct answer was ${getCorrectAnswer(number)}.\nLet's try again, ${username}!`);
+  console.log(`\n"${answer}" is wrong answer ;(. Correct answer was "${correctAnswer}".\nLet's try again, ${username}!`);
+
+  return false;
 };
 
-export const initBrainEven = (username) => {
-  askQuestion(0, username);
+export const initBrainEven = () => {
+  const attempt = 0;
+  const username = askName();
+  askQuestion(attempt, username);
 };
