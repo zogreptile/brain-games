@@ -1,9 +1,9 @@
 import { isEven } from '../utils';
-import game from '../index';
+import game from '..';
 
-const rules = 'Answer "yes" if number even otherwise answer "no".\n';
+const description = 'Answer "yes" if number even otherwise answer "no".\n';
 const getQuestion = () => Math.ceil(Math.random() * 100);
 const getCorrectAnswer = question => (isEven(question) ? 'yes' : 'no');
-const totalAttempts = 3;
+const attempts = 3;
 
-export default () => game(rules, getQuestion, getCorrectAnswer, totalAttempts);
+export default () => game(description, getQuestion, getCorrectAnswer, attempts);
