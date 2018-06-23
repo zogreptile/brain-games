@@ -17,7 +17,7 @@ export const getOperation = expr => cdr(expr);
 const getQuestion = () =>
   mathExpression(randomNumber(0, 10), randomNumber(0, 10), randomMathOperation());
 
-const getCorrectAnswer = (question) => {
+const getAnswer = (question) => {
   const operation = getOperation(question);
 
   switch (operation) {
@@ -33,4 +33,6 @@ const getCorrectAnswer = (question) => {
 const questionToString = question =>
   `${getFirstDigit(question)} ${getOperation(question)} ${getSecondDigit(question)}`;
 
-export default () => game(description, getQuestion, getCorrectAnswer, questionToString);
+const gameMethods = cons(cons(getQuestion, getAnswer), questionToString);
+
+export default () => game(description, gameMethods);

@@ -14,8 +14,10 @@ const gcd = (a, b) => {
 
 const getQuestion = () => cons(randomNumber(1, 500), randomNumber(1, 500));
 
-const getCorrectAnswer = question => String(gcd(car(question), cdr(question)));
+const getAnswer = question => String(gcd(car(question), cdr(question)));
 
 const questionToString = question => `${car(question)} ${cdr(question)}`;
 
-export default () => game(description, getQuestion, getCorrectAnswer, questionToString);
+const gameMethods = cons(cons(getQuestion, getAnswer), questionToString);
+
+export default () => game(description, gameMethods);
