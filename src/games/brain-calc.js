@@ -1,12 +1,18 @@
+import { cons, car, cdr } from 'hexlet-pairs';
 import game from '..';
-import {
-  toString,
-  randomNumber, randomMathOperation,
-  mathExpression, mathExpressionToString,
-  getFirstDigit, getSecondDigit, getOperation,
-} from '../utils';
+import { randomNumber } from '../utils';
 
 const description = 'What is the result of the expression?';
+
+export const randomMathOperation = () => {
+  const operations = ['+', '-', '*'];
+  return operations[Math.floor(Math.random() * operations.length)];
+};
+
+export const mathExpression = (a, b, operation) => cons(cons(a, b), operation);
+export const getFirstDigit = expr => car(car(expr));
+export const getSecondDigit = expr => cdr(car(expr));
+export const getOperation = expr => cdr(expr);
 
 const getQuestion = () =>
   mathExpression(randomNumber(0, 10), randomNumber(0, 10), randomMathOperation());
@@ -15,16 +21,16 @@ const getCorrectAnswer = (question) => {
   const operation = getOperation(question);
 
   switch (operation) {
-    case '+':
-      return toString(getFirstDigit(question) + getSecondDigit(question));
     case '-':
-      return toString(getFirstDigit(question) - getSecondDigit(question));
+      return String(getFirstDigit(question) - getSecondDigit(question));
     case '*':
-      return toString(getFirstDigit(question) * getSecondDigit(question));
+      return String(getFirstDigit(question) * getSecondDigit(question));
     default:
+      return String(getFirstDigit(question) + getSecondDigit(question));
   }
 };
 
-const questionToString = question => mathExpressionToString(question);
+const questionToString = question =>
+  `${getFirstDigit(question)} ${getOperation(question)} ${getSecondDigit(question)}`;
 
 export default () => game(description, getQuestion, getCorrectAnswer, questionToString);
