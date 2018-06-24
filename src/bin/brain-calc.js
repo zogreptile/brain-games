@@ -1,4 +1,4 @@
 #!/usr/bin/env node
-import initBrainCalc from '../games/brain-calc';
+import initBrainCalc from '../games/calc';
 
 initBrainCalc();

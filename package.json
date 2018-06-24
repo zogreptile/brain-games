@@ -1,6 +1,6 @@
 {
   "name": "yet-another-brain-games",
-  "version": "3.1.0",
+  "version": "5.0.0",
   "description": "Hexlet first project",
   "scripts": {
     "babel-node": "babel-node",
