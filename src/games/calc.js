@@ -3,12 +3,9 @@ import { randomNumber } from '../utils';
 
 const description = 'What is the result of the expression?';
 
-const randomMathOperation = () => {
-  const operations = ['+', '-', '*'];
-  return operations[Math.floor(Math.random() * operations.length)];
-};
+const mathOperations = ['+', '-', '*'];
 
-const getAnswer = (a, b, operation) => {
+const getMathExpressionResult = (a, b, operation) => {
   switch (operation) {
     case '-':
       return String(a - b);
@@ -22,10 +19,10 @@ const getAnswer = (a, b, operation) => {
 const generateGameData = () => {
   const firstNumber = randomNumber(0, 10);
   const secondNumber = randomNumber(0, 10);
-  const mathOperation = randomMathOperation();
+  const mathOperation = mathOperations[randomNumber(0, mathOperations.length - 1)];
 
   const question = `${firstNumber} ${mathOperation} ${secondNumber}`;
-  const answer = getAnswer(firstNumber, secondNumber, mathOperation);
+  const answer = getMathExpressionResult(firstNumber, secondNumber, mathOperation);
 
   return [question, answer];
 };

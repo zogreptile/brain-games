@@ -4,17 +4,19 @@ import { randomNumber } from '../utils';
 const description = 'Balance the given number.';
 
 const balanceNumber = (digits) => {
-  const firstEl = digits[0];
-  const lastEl = digits[digits.length - 1];
+  let firstEl = digits[0];
+  let lastEl = digits[digits.length - 1];
+  const digitsCopy = digits.slice();
 
-  if (lastEl - firstEl > 1) {
-    const digitsCopy = digits.slice();
+  while (lastEl - firstEl > 1) {
     digitsCopy[0] = lastEl - 1;
     digitsCopy[digitsCopy.length - 1] = firstEl + 1;
-    return balanceNumber(digitsCopy.sort());
+    digitsCopy.sort();
+    [firstEl] = digitsCopy;
+    lastEl = digitsCopy[digitsCopy.length - 1];
   }
 
-  return digits.join('');
+  return digitsCopy.join('');
 };
 
 const getAnswer = (question) => {
