@@ -3,38 +3,38 @@ import { randomNumber } from '../utils';
 
 const description = 'Balance the given number.';
 
-const balanceNumber = (digits) => {
-  let firstEl = digits[0];
-  let lastEl = digits[digits.length - 1];
-  const digitsCopy = digits.slice();
-
-  while (lastEl - firstEl > 1) {
-    digitsCopy[0] = lastEl - 1;
-    digitsCopy[digitsCopy.length - 1] = firstEl + 1;
-    digitsCopy.sort();
-    [firstEl] = digitsCopy;
-    lastEl = digitsCopy[digitsCopy.length - 1];
-  }
-
-  return digitsCopy.join('');
-};
-
-const getAnswer = (question) => {
-  const stringifiedNumber = String(question);
-  let digitsArray = [];
+const numberToDigits = (number) => {
+  const stringifiedNumber = String(number);
+  let digits = [];
 
   for (let i = 0; i < stringifiedNumber.length; i += 1) {
-    digitsArray.push(Number(stringifiedNumber[i]));
+    digits.push(Number(stringifiedNumber[i]));
   }
 
-  digitsArray = digitsArray.sort();
+  digits = digits.sort();
 
-  return balanceNumber(digitsArray);
+  return digits;
+};
+
+const balanceNumber = (number) => {
+  const digits = numberToDigits(number);
+  let firstEl = digits[0];
+  let lastEl = digits[digits.length - 1];
+
+  while (lastEl - firstEl > 1) {
+    digits[0] = lastEl - 1;
+    digits[digits.length - 1] = firstEl + 1;
+    digits.sort();
+    [firstEl] = digits;
+    lastEl = digits[digits.length - 1];
+  }
+
+  return digits.join('');
 };
 
 const generateGameData = () => {
   const question = randomNumber(10, 5000);
-  const answer = getAnswer(question);
+  const answer = balanceNumber(question);
 
   return [question, answer];
 };
